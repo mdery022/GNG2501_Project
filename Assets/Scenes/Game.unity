@@ -594,7 +594,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &732474459
 Transform:
   m_ObjectHideFlags: 0
@@ -617,7 +617,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 732474458}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a5a6a70209b6e6345bfe18b02314a54e, type: 3}
   m_Name: 
@@ -719,7 +719,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 638701421}
-  m_PlaneDistance: 0.5
+  m_PlaneDistance: 0.3
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -1903,7 +1903,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5849435413937315666, guid: 54fa8f9d2cac09047921db389a41a7ce, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.593
+      value: -2.663
       objectReference: {fileID: 0}
     - target: {fileID: 5849435413937315666, guid: 54fa8f9d2cac09047921db389a41a7ce, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2809,6 +2809,41 @@ Transform:
   m_Father: {fileID: 1063613690}
   m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1308795390 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 191996, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
+  m_PrefabInstance: {fileID: 2045514794}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1308795395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308795390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efbce04f58757ba459852b21d9edc39e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mother: {fileID: 946080959}
+  father: {fileID: 517666622}
+  subtitle: {fileID: 1736669711}
+  colliderName: DoorFrameTrigger
+--- !u!114 &1308795396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308795390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4de7113800cbaf44892e91b78624d2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextScene: {fileID: 732474458}
+  colliderName: TargetTrigger
 --- !u!1 &1524741413
 GameObject:
   m_ObjectHideFlags: 0
@@ -3138,7 +3173,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1739271192}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.303, y: 1.386, z: -4.45}
+  m_LocalPosition: {x: -1.303, y: 1.386, z: -4.185}
   m_LocalScale: {x: 1.1444306, y: 2.4705386, z: 0.7363876}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3282,6 +3317,22 @@ PrefabInstance:
       propertyPath: uiInteractAction.actionPath
       value: /actions/default/in/InteractUI
       objectReference: {fileID: 0}
+    - target: {fileID: 13693334, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
+      propertyPath: m_Height
+      value: 1.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 13693334, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
+      propertyPath: m_Radius
+      value: 0.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 13693334, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 13693334, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
+      propertyPath: m_Center.y
+      value: 1.03
+      objectReference: {fileID: 0}
     - target: {fileID: 114000011273627542, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: poseAction.actionPath
       value: /actions/default/in/Pose
@@ -3309,7 +3360,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 447954, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
   m_PrefabInstance: {fileID: 2045514794}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2045514797
+--- !u!114 &2045514803
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3332,50 +3383,6 @@ MonoBehaviour:
     actionPath: /actions/default/in/Use
     needsReinit: 0
   body: {fileID: 831097854}
---- !u!114 &2045514799
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1807680218}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4de7113800cbaf44892e91b78624d2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nextScene: {fileID: 732474458}
-  colliderName: TargetTrigger
---- !u!114 &2045514800
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1807680218}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efbce04f58757ba459852b21d9edc39e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mother: {fileID: 946080959}
-  father: {fileID: 517666622}
-  subtitle: {fileID: 1736669711}
-  colliderName: DoorFrameTrigger
---- !u!136 &2045514801
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1807680218}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.32
-  m_Height: 1.91
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.89, z: 0}
 --- !u!1 &1000009056484700
 GameObject:
   m_ObjectHideFlags: 0
@@ -6534,7 +6541,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1000013058858700}
   m_LocalRotation: {x: -0, y: 0.6510818, z: -0, w: 0.75900763}
-  m_LocalPosition: {x: -2.904, y: 0.126, z: 0.016}
+  m_LocalPosition: {x: -2.742, y: 0.126, z: 0.041}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13640,7 +13647,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.15, y: 2.5, z: 0.12051574}
+  m_Size: {x: 1.36, y: 2.5, z: 0.21}
   m_Center: {x: 0.57528025, y: 1.26, z: 0}
 --- !u!65 &65000012511505676
 BoxCollider:

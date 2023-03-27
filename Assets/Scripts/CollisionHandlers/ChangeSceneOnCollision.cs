@@ -13,8 +13,6 @@ public class ChangeSceneOnCollision : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("SCENE");
-
         if (other.name == colliderName)
         {
             nextScene.SetActive(true);
