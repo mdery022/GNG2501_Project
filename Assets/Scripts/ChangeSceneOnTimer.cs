@@ -9,13 +9,13 @@ public class ChangeSceneOnTimer : MonoBehaviour
     private float changeTime;
 
     [SerializeField]
-    private string sceneName;
+    private GameObject nextScene;
 
     void Update()
     {
         changeTime -= Time.deltaTime;
 
         if (changeTime <= 0)
-            SceneManager.LoadScene(sceneName);
+            nextScene.SetActive(true);
     }
 }

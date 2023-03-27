@@ -6,16 +6,18 @@ using UnityEngine.SceneManagement;
 public class ChangeSceneOnCollision : MonoBehaviour
 {
     [SerializeField]
-    private string sceneName;
+    private GameObject nextScene;
 
     [SerializeField]
     private string colliderName;
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("SCENE");
+
         if (other.name == colliderName)
         {
-            SceneManager.LoadScene(sceneName);
+            nextScene.SetActive(true);
         }
     }
 }

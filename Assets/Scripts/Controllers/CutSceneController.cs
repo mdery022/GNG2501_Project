@@ -5,15 +5,10 @@ using UnityEngine;
 public class CutSceneController : MonoBehaviour
 {
     [SerializeField]
-    private float cameraSpeed = 800.0f;
-
-    [SerializeField]
     new Camera camera;
 
     [SerializeField]
     Transform body;
-
-    float xRotation = 0.0f, yRotation = 0.0f;
 
     void Update()
     {
@@ -30,11 +25,8 @@ public class CutSceneController : MonoBehaviour
          * CAMERA ROTATION
          */
 
-        yRotation += Input.GetAxis("Mouse X") * cameraSpeed * Time.deltaTime;
-        xRotation -= Input.GetAxis("Mouse Y") * cameraSpeed * Time.deltaTime;
-        xRotation = Mathf.Clamp(xRotation, -90, 90);
-
-        camera.transform.eulerAngles = new Vector3(xRotation, yRotation, 0f);
-        body.eulerAngles = new Vector3(0f, yRotation, 0f);
+        Vector3 forward = camera.transform.forward;
+        forward.y = 0;
+        body.rotation = Quaternion.LookRotation(forward);
     }
 }

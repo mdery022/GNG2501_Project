@@ -1,11 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
-    private float movementSpeed = 2.0f, raycastDistance = 5.0f, cameraSpeed = 800.0f;
+    private float movementSpeed = 2.0f, raycastDistance = 5.0f;
 
     [SerializeField]
     new Camera camera;
@@ -14,10 +16,18 @@ public class PlayerController : MonoBehaviour
     GameObject interactText;
 
     [SerializeField]
+    private string colliderName;
+
+    [SerializeField]
+    private SteamVR_Action_Vector2 moveAction;
+
+    [SerializeField]
+    private SteamVR_Action_Boolean useAction;
+
+    [SerializeField]
     Transform body;
 
     float horizontalAxis, verticalAxis;
-    float xRotation = 0.0f, yRotation = 0.0f;
     private Interactable interactable;
     private Animator animator;
 
@@ -34,21 +44,6 @@ public class PlayerController : MonoBehaviour
         {
             Cursor.lockState = Cursor.lockState == CursorLockMode.Locked ? CursorLockMode.None : CursorLockMode.Locked;
         }
-
-        /* TODO: SITTING MAYBE?
-        if (state == PlayerState.Sit)
-        {
-            // TODO: animator.SetInteger("State", 2);
-
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                state = PlayerState.Idle;
-            }
-            else
-            {
-                return;
-            }
-        }*/
 
         // Set the interactable text visible when looking at interactable object
         RaycastHit hit;
@@ -74,11 +69,12 @@ public class PlayerController : MonoBehaviour
          * CHARACTER MOVEMENT
          */
 
-        // Get the keys pressed by the player (A, W, S, D)
-        horizontalAxis = (Input.GetKey(KeyCode.D) ? 1 : 0) - (Input.GetKey(KeyCode.A) ? 1 : 0);
-        verticalAxis = (Input.GetKey(KeyCode.W) ? 1 : 0) - (Input.GetKey(KeyCode.S) ? 1 : 0);
+        Vector2 movement = moveAction.axis;
 
-        // Get the firection of the camera
+        horizontalAxis = movement.x;
+        verticalAxis = movement.y;
+
+        // Get the direction of the camera
         Vector3 forward = camera.transform.forward;
         Vector3 right = camera.transform.right;
 
@@ -99,7 +95,7 @@ public class PlayerController : MonoBehaviour
          * PLAYER INTERACTIONS
          */
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (useAction.stateDown)
         {
             if (interactable != null)
             {
@@ -114,47 +110,41 @@ public class PlayerController : MonoBehaviour
          * CAMERA ROTATION
          */
 
-        yRotation += Input.GetAxis("Mouse X") * cameraSpeed * Time.deltaTime;
-        xRotation -= Input.GetAxis("Mouse Y") * cameraSpeed * Time.deltaTime;
-        xRotation = Mathf.Clamp(xRotation, -90, 90);
-
-        camera.transform.eulerAngles = new Vector3(xRotation, yRotation, 0f);
-        body.eulerAngles = new Vector3(0f, yRotation, 0f);
+        Vector3 forward = camera.transform.forward;
+        forward.y = 0;
+        body.rotation = Quaternion.LookRotation(forward);
     }
-
-    /* TODO: MAYBE SIT
-    public void SetSitting(Vector3 position)
-    {
-        transform.position = position;
-        state = PlayerState.Sit;
-    }*/
 
     private void SetWalking(float horizontalAxis, float verticalAxis)
     {
+        /*float verticalAxis = (forward * movement.z).z;
+        float horizontalAxis = (forward * movement.x).x;*/
+        float treshold = 0.0f;
+
         // Going forward
-        if (verticalAxis > 0)
+        if (verticalAxis > treshold)
         {
             // Going forward to the right
-            if (horizontalAxis > 0) animator.SetInteger("State", 2);
+            if (horizontalAxis > treshold) animator.SetInteger("State", 2);
             // Going forward to the left
-            else if (horizontalAxis < 0) animator.SetInteger("State", 8);
+            else if (horizontalAxis < -treshold) animator.SetInteger("State", 8);
             else animator.SetInteger("State", 1);
         }
         // Going backward
-        else if (verticalAxis < 0)
+        else if (verticalAxis < -treshold)
         {
             // Going backward to the right
-            if (horizontalAxis > 0) animator.SetInteger("State", 4);
+            if (horizontalAxis > treshold) animator.SetInteger("State", 4);
             // Going backward to the left
-            else if (horizontalAxis < 0) animator.SetInteger("State", 6);
+            else if (horizontalAxis < -treshold) animator.SetInteger("State", 6);
             else animator.SetInteger("State", 5);
         }
         else
         {
             // Going to the right
-            if (horizontalAxis > 0) animator.SetInteger("State", 3);
+            if (horizontalAxis > treshold) animator.SetInteger("State", 3);
             // Going to the left
-            else if (horizontalAxis < 0) animator.SetInteger("State", 7);
+            else if (horizontalAxis < -treshold) animator.SetInteger("State", 7);
             else animator.SetInteger("State", 0);
         }
     }

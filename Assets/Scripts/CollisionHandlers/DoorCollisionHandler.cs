@@ -32,6 +32,21 @@ public class DoorCollisionHandler : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("DOOR INTERACTABLE TRIGGERED");
+
+        if (other.name == colliderName && state == EnterDiningRoomAnimationState.NotEntered)
+        {
+            timer = 0f;
+            state = EnterDiningRoomAnimationState.MotherTalking;
+            subtitle.text = "[Mère] Te voilà, Zoé!";
+            motherAnimator.SetInteger("State", 1);
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        Debug.Log("DOOR INTERACTABLE TRIGGER STAY");
+
         if (other.name == colliderName && state == EnterDiningRoomAnimationState.NotEntered)
         {
             timer = 0f;
