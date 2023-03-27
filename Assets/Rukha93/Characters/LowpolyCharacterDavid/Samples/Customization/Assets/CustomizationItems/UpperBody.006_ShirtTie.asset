@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c1f38163de8ee243aa93b40004a77de, type: 3}
+  m_Name: UpperBody.006_ShirtTie
+  m_EditorClassIdentifier: 
+  m_Slot: 2
+  m_Meshes:
+  - {fileID: -1178224858820328111, guid: 4b8a3ce4519c3564db396d0d491fb0f8, type: 3}
+  m_HiddenParts: 0200000003000000040000000500000006000000070000000c0000000800000009000000

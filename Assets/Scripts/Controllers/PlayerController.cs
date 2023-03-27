@@ -16,9 +16,6 @@ public class PlayerController : MonoBehaviour
     GameObject interactText;
 
     [SerializeField]
-    private string colliderName;
-
-    [SerializeField]
     private SteamVR_Action_Vector2 moveAction;
 
     [SerializeField]
