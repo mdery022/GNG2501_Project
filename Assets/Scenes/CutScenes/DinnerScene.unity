@@ -8441,7 +8441,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "[P\xC8RE] Stop!"
+  m_text: "[P\xC8RE] Non, non. non. Stop!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -11082,6 +11082,8 @@ PlayableDirector:
     value: {fileID: 1174154266}
   - key: {fileID: 5182545803750943509, guid: 3182369dab1e32e4f8d7f9f724ba2813, type: 2}
     value: {fileID: 769050610}
+  - key: {fileID: 7190549613841956307, guid: 3182369dab1e32e4f8d7f9f724ba2813, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &1627085570
