@@ -7,6 +7,12 @@ public class DoorInteractable : Interactable
     [SerializeField]
     private float openAngel, movementSpeed;
 
+    [SerializeField]
+    private AudioClip openClip, closeClip;
+
+    [SerializeField]
+    private AudioSource audioSource;
+
     private DoorState doorState = DoorState.Closed;
     private Vector3 initialPosition;
 
@@ -14,6 +20,7 @@ public class DoorInteractable : Interactable
     {
         if (doorState != DoorState.Closing && doorState != DoorState.Opening)
         {
+            audioSource.PlayOneShot(doorState == DoorState.Closed ? openClip : closeClip);
             doorState = doorState == DoorState.Closed ? DoorState.Opening : DoorState.Closing;
         }
     }

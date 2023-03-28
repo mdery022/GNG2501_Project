@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -9,11 +10,15 @@ public class ConversationInteractable : Interactable
     TextMeshProUGUI subtitle;
 
     [SerializeField]
-    List<string> conversations;
+    List<ConversationDetails> conversations;
+
+    [SerializeField]
+    AudioSource audioSource;
 
     Animator animator;
 
     float timer = 0;
+    float end = 0;
 
     private void Start()
     {
@@ -24,10 +29,14 @@ public class ConversationInteractable : Interactable
     {
         if (isInteractable)
         {
+            ConversationDetails conversation = conversations[UnityEngine.Random.Range(0, conversations.Count)];
+
             isInteractable = false;
             timer = 0;
-            subtitle.text = conversations[Random.Range(0, conversations.Count)];
+            end = conversation.Audio.length; ;
+            subtitle.text = conversation.Conversation;
             animator.SetInteger("State", 1);
+            audioSource.PlayOneShot(conversation.Audio);
         }
     }
 
@@ -37,12 +46,19 @@ public class ConversationInteractable : Interactable
         {
             timer += Time.deltaTime;
 
-            if (timer >= 3)
+            if (timer >= end)
             {
                 isInteractable = true;
                 subtitle.text = "";
                 animator.SetInteger("State", 0);
             }
         }
+    }
+
+    [Serializable]
+    public class ConversationDetails
+    {
+        public string Conversation;
+        public AudioClip Audio;
     }
 }

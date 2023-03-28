@@ -19,6 +19,9 @@ public class DoorCollisionHandler : MonoBehaviour
     [SerializeField]
     private string colliderName;
 
+    [SerializeField]
+    private AudioSource audioSource;
+
     private EnterDiningRoomAnimationState state;
     private float timer;
 
@@ -36,8 +39,9 @@ public class DoorCollisionHandler : MonoBehaviour
         {
             timer = 0f;
             state = EnterDiningRoomAnimationState.MotherTalking;
-            subtitle.text = "[Mère] Te voilà, Zoé!";
+            subtitle.text = "[Mère] Tu es rentré!";
             motherAnimator.SetInteger("State", 1);
+            audioSource.Play();
         }
     }
 
@@ -46,7 +50,7 @@ public class DoorCollisionHandler : MonoBehaviour
         if (state == EnterDiningRoomAnimationState.MotherTalking)
         {
             timer += Time.deltaTime;
-            if (timer >= 3f)
+            if (timer >= 1.5f)
             {
                 timer = 0;
                 state = EnterDiningRoomAnimationState.FatherTalking;
@@ -58,7 +62,7 @@ public class DoorCollisionHandler : MonoBehaviour
         else if (state == EnterDiningRoomAnimationState.FatherTalking)
         {
             timer += Time.deltaTime;
-            if (timer >= 3f)
+            if (timer >= 1.1f)
             {
                 state = EnterDiningRoomAnimationState.AnimationDone;
                 subtitle.text = "";
